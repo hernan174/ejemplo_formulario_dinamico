@@ -2,43 +2,38 @@ import 'dart:convert';
 
 import 'package:ejemplo_formulario_dinamico/models/modelo_base.dart';
 
-PersonaModel personaModelFromJson(String str) =>
-    PersonaModel.fromJson(json.decode(str));
+PaisModel paisModelFromJson(String str) => PaisModel.fromJson(json.decode(str));
 
-String personaModelToJson(PersonaModel data) => json.encode(data.toJson());
+String paisModelToJson(PaisModel data) => json.encode(data.toJson());
 
-class PersonaModel extends ModeloBase {
-  PersonaModel({
+class PaisModel extends ModeloBase {
+  PaisModel({
     this.nombre = '',
-    this.direccion = '',
-    this.edad = '',
+    this.abreviatura = '',
   });
 
   final String nombre;
-  final String direccion;
-  final String edad;
+  final String abreviatura;
 
-  factory PersonaModel.fromJson(Map<String, dynamic> json) => PersonaModel(
-        nombre: json["Nombre"] ?? '',
-        direccion: json["DireccionCasa"] ?? '',
-        edad: json["Edad"] ?? '',
+  factory PaisModel.fromJson(Map<String, dynamic> json) => PaisModel(
+        nombre: json["Nombre"],
+        abreviatura: json["Abreviatura"],
       );
 
   @override
   Map<String, dynamic> toJson() => {
         "Nombre": nombre,
-        "DireccionCasa": direccion,
-        "Edad": edad,
+        "Abreviatura": abreviatura,
       };
 
   ///Este Metodo se utiliza actualizar un valor del modelo actual.
 
   /// [parametros] - requiere [key, valor]
-  /// `key` Tiene que ser una clave que se encuentre en la clase [PersonaModel.toJson].
+  /// `key` Tiene que ser una clave que se encuentre en la clase [PaisModel.toJson].
   /// `valor` Es el nuevo valor que se le quiere asignar a la propiedad.
   /// Si se proporciona una clave que no existe `devolvera el modelo sin ningun cambio`
   @override
-  PersonaModel copyWithFromKey({required String key, required String valor}) {
+  PaisModel copyWithFromKey({required String key, required String valor}) {
     ///Paso el modelo a un json
     final Map<String, dynamic> datos = toJson();
 
@@ -49,6 +44,6 @@ class PersonaModel extends ModeloBase {
     }
 
     ///Vuelvo a pasar el mapa a un modelo y lo devuelvo
-    return PersonaModel.fromJson(datos);
+    return PaisModel.fromJson(datos);
   }
 }
