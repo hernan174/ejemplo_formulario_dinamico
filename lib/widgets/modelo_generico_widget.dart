@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:ejemplo_formulario_dinamico/models/modelo_base.dart';
 import 'package:ejemplo_formulario_dinamico/widgets/textfield_widget.dart';
 
+///Modelo generico que extiende de la clase [ModeloBase] que sirve de base para un formulario dinamico
+///[T] es una variable que dice que vamos a trabajar con una clase que extiende de la clase padre y posee los metodos
+///que este tiene definidos
+///`modeloFormulario` Modelo del cual sacaremos la informacion para armar  el formulario
+///`where` Parametro opcional si se espefica unicamente se cargara las claves que concuerden
+///`titulos` Mapa que contenga los titulos para el formulario debe posee las mismas claves que posee la clase [modeloFormulario]
 class ModeloGenericoWidget<T extends ModeloBase> extends StatelessWidget {
   const ModeloGenericoWidget(
       {Key? key,
