@@ -39,12 +39,6 @@ class _FormularioDinamico extends StatefulWidget {
 class _FormularioDinamicoState extends State<_FormularioDinamico> {
   PersonaModel persona = PersonaModel();
 
-  // @override
-  // void initState() {
-  //   cargarModelo(PersonaModel(nombre: 'Hernan', edad: '28'));
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -55,9 +49,13 @@ class _FormularioDinamicoState extends State<_FormularioDinamico> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             ///Recorro el modelo que tengo definido en el widget para mostrar la actualizacion de sus valores
-            ///Para armar el widget dinamico siempre recorro los [entries] del mapa
             ...persona
+
+                ///Convierto el modelo en un json para poder mapear
                 .toJson()
+
+                ///Para armar el widget dinamico siempre recorro los [entries] del mapa mapa poder tener metodos como
+                ///[where, map] que me permiten interactuar con el contenido
                 .entries
 
                 ///Si deseo omitir algun valor que tenga el mapa utilizo el metodo where
@@ -80,6 +78,7 @@ class _FormularioDinamicoState extends State<_FormularioDinamico> {
 
                       ///Cada vez que realice una interaccion con el campo del texto se dispará este evento y me actualizara el modelo
                       onChanged: (value) {
+                        ///Actualizo mi modelo en base a los cambios de [value]
                         persona = persona.copyWithFromKey(
                             key: item.key, valor: value);
                       },
